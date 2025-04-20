@@ -14,6 +14,7 @@ const initialTimesheet: Timesheet = {
   id: undefined,
   date: undefined,
   duration: undefined,
+  timespan: undefined,
   user: undefined,
   project: undefined,
 };
@@ -74,6 +75,7 @@ function App() {
 
   const editRow = (row: Timesheet) => {
     setSelectedTimesheet(row);
+    console.log("row", row);
   };
 
   const deleteRow = (row: Timesheet) => {

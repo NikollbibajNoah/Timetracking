@@ -1,8 +1,9 @@
+import { Project } from "@/lib/entities";
 import axiosInstance from "./AxiosInstance";
 
 const PROJECTS_API_URL = import.meta.env.VITE_APP_BACKEND_PROJECTS_ENDPOINT;
 
-const getProjects = async () => {
+const getProjects = async (): Promise<Project[] | undefined> => {
   try {
     const res = await axiosInstance.get(PROJECTS_API_URL);
 

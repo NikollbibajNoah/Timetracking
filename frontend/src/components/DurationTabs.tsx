@@ -2,17 +2,21 @@ import { Tab, Tabs, TextField } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import {
   formatDecimalToTime,
+  formatStringToDate,
   formatStringToTime,
   formatTimeToString,
 } from "../lib/utlis";
+import { Timespan } from "@/lib/entities";
 
 export interface DurationTabsProps {
   value: number | undefined;
-  onChangeTime: (time: number | undefined) => void;
+  timespan?: Timespan;
+  onChangeTime: (time: number | undefined, timespan?: Timespan) => void;
 }
 
 export const DurationTabs: React.FC<DurationTabsProps> = ({
   value,
+  timespan,
   onChangeTime,
 }) => {
   const [tab, setTab] = useState<number>(0);
@@ -39,7 +43,16 @@ export const DurationTabs: React.FC<DurationTabsProps> = ({
       setDuration(value);
       setTime(formattedTime);
     }
-  }, [value]);
+    if (timespan) {
+      const formattedStartDate = formatStringToDate(timespan.from)?.getTime();
+      const formattedEndDate = formatStringToDate(timespan.to)?.getTime();
+      setStartTime(formatTimeToString(formattedStartDate!));
+      setEndTime(formatTimeToString(formattedEndDate!));
+    } else {
+      setStartTime("");
+      setEndTime("");
+    }
+  }, [value, timespan]);
 
   useEffect(() => {
     if (tab === 0) {
@@ -52,7 +65,10 @@ export const DurationTabs: React.FC<DurationTabsProps> = ({
       if (startTime && endTime) {
         const durationDecimal = calculateDuration();
         setDuration(durationDecimal);
-        onChangeTime(durationDecimal);
+        onChangeTime(durationDecimal, {
+          from: formatStringToTime(startTime),
+          to: formatStringToTime(endTime),
+        });
       }
     }
   }, [startTime, endTime, time, tab]);

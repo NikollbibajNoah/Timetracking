@@ -3,7 +3,7 @@ import axiosInstance from "./AxiosInstance";
 
 const TIMESHEETS_API_URL = import.meta.env.VITE_APP_BACKEND_TIMESHEETS_ENDPOINT;
 
-const getTimesheets = async () => {
+const getTimesheets = async (): Promise<Timesheet[] | undefined> => {
   try {
     const res = await axiosInstance.get(TIMESHEETS_API_URL);
 
@@ -15,7 +15,9 @@ const getTimesheets = async () => {
   }
 };
 
-const createTimesheet = async (timesheet: Timesheet) => {
+const createTimesheet = async (
+  timesheet: Timesheet
+): Promise<Timesheet | undefined> => {
   try {
     const res = await axiosInstance.post(TIMESHEETS_API_URL, timesheet);
 
@@ -27,7 +29,9 @@ const createTimesheet = async (timesheet: Timesheet) => {
   }
 };
 
-const updateTimesheet = async (timesheet: Timesheet) => {
+const updateTimesheet = async (
+  timesheet: Timesheet
+): Promise<Timesheet | undefined> => {
   try {
     const res = await axiosInstance.put(
       `${TIMESHEETS_API_URL}/${timesheet.id}`,
@@ -42,7 +46,9 @@ const updateTimesheet = async (timesheet: Timesheet) => {
   }
 };
 
-const deleteTimesheet = async (id: number | undefined) => {
+const deleteTimesheet = async (
+  id: number | undefined
+): Promise<Timesheet | undefined> => {
   if (!id) {
     console.error("Invalid timesheet ID:", id);
     return;

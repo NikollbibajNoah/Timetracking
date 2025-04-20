@@ -6,7 +6,7 @@ import { useTimesheet } from "../hooks/useTimesheet";
 import { formatStringToDate } from "../lib/utlis";
 import React, { useEffect, useState } from "react";
 import { getProjects } from "../services/ProjectsDataService";
-import { Timesheet, Project } from "@/lib/entities";
+import { Timesheet, Project, Timespan } from "@/lib/entities";
 import JsonView from "@uiw/react-json-view";
 
 export interface TimesheetFormProps {
@@ -57,9 +57,17 @@ export const Formular: React.FC<TimesheetFormProps> = ({ value, onSave }) => {
     updateTimesheetField("date", formattedDate);
   };
 
-  const handleTimeChange = (time: number | undefined) => {
-    updateTimesheetField("duration", time ?? undefined);
+  const handleTimeChange = (time: number | undefined, timespan?: Timespan) => {
+    updateTimesheetField("duration", time);
+
+    if (timespan) {
+      updateTimesheetField("timespan", timespan);
+    }
   };
+
+  // const handleTimespanChange = (timespan: Timesheet) => {
+  //   updateTimesheetField("timespan", timespan ?? undefined);
+  // }
 
   return (
     <div className="w-[600px] p-4 flex">
@@ -98,7 +106,8 @@ export const Formular: React.FC<TimesheetFormProps> = ({ value, onSave }) => {
           <FormularSection title="Duration">
             <DurationTabs
               value={timesheet.duration}
-              onChangeTime={handleTimeChange}
+              timespan={timesheet.timespan}
+              onChangeTime={(time, timespan) => handleTimeChange(time, timespan)}
             />
           </FormularSection>
         </div>
@@ -114,7 +123,7 @@ export const Formular: React.FC<TimesheetFormProps> = ({ value, onSave }) => {
             Erfassen
           </Button>
         </div>
-        {/* <JsonView value={timesheet} /> */}
+        <JsonView value={timesheet} />
       </div>
     </div>
   );
