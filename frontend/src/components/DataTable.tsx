@@ -12,7 +12,6 @@ import {
 import {
   formatDateToString,
   formatStringToDate,
-  formatTimeToStringDuration,
   formatDecimalToTime,
 } from "../lib/utlis";
 import React, { useState } from "react";
@@ -75,9 +74,7 @@ export const DataTable: React.FC<DataTableProps> = ({
                     {formatDateToString(formatStringToDate(row.date!)!)}
                   </TableCell>
                   <TableCell>
-                    {Number.isInteger(row.timespan.duration)
-                      ? formatTimeToStringDuration(row.timespan.duration!)
-                      : formatDecimalToTime(row.timespan.duration!, true)}
+                    {formatDecimalToTime(row.timespan.duration!, true)}
                   </TableCell>
                   <TableCell>
                       {row.timespan.start ? formatDateToString(formatStringToDate(row.timespan.start)!, true) : "-"}

@@ -1,6 +1,7 @@
 import { Tab, Tabs, TextField } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import {
+  convertTimeStringToDecimal,
   formatDecimalToTime,
   formatStringToDate,
   formatStringToTime,
@@ -9,77 +10,72 @@ import {
 import { Timespan } from "@/lib/entities";
 
 export interface DurationTabsProps {
-  value: number | undefined;
-  timespan?: Timespan;
-  onChangeTime: (time: number | undefined, timespan?: Timespan) => void;
+  timespan: Timespan;
+  onChangeTime: (timespan: Timespan) => void;
 }
 
 export const DurationTabs: React.FC<DurationTabsProps> = ({
-  value,
   timespan,
   onChangeTime,
 }) => {
   const [tab, setTab] = useState<number>(0);
-  const [time, setTime] = useState<string>("");
+  const [duration, setDuration] = useState<string>("");
   const [startTime, setStartTime] = useState<string>("");
   const [endTime, setEndTime] = useState<string>("");
-  const [duration, setDuration] = useState<number>(0);
 
   useEffect(() => {
-    if (!value) {
-      setTime("");
+    if (tab === 0 && timespan.duration) {
+      const formattedTime = formatDecimalToTime(timespan.duration);
+
+      setDuration(formattedTime);
+    } else {
+      setDuration("");
       setStartTime("");
       setEndTime("");
-      setDuration(0);
-    } else {
-      let formattedTime = undefined;
-
-      if (Number.isInteger(value)) {
-        formattedTime = formatTimeToString(value);
-      } else {
-        formattedTime = formatDecimalToTime(value);
-      }
-
-      setDuration(value);
-      setTime(formattedTime);
     }
-    if (timespan) {
+
+    if (tab === 1 && timespan.start && timespan.end) {
       const formattedStartDate = formatStringToDate(timespan.start)?.getTime();
       const formattedEndDate = formatStringToDate(timespan.end)?.getTime();
-      setStartTime(formatTimeToString(formattedStartDate!));
-      setEndTime(formatTimeToString(formattedEndDate!));
-    } else {
-      setStartTime("");
-      setEndTime("");
+
+      if (formattedStartDate && formattedEndDate) {
+        setStartTime(formatTimeToString(formattedStartDate!));
+        setEndTime(formatTimeToString(formattedEndDate!));
+      }
     }
-  }, [value, timespan]);
+  }, [timespan, tab]);
 
   useEffect(() => {
     if (tab === 0) {
-      const formattedTime = formatStringToTime(time).getTime();
-
+      const formattedTime: number = convertTimeStringToDecimal(duration);
+    
       if (formattedTime) {
-        onChangeTime(formattedTime);
-      }
-    } else if (tab === 1) {
-      if (startTime && endTime) {
-        const durationDecimal = calculateDuration();
-        setDuration(durationDecimal);
-        onChangeTime(durationDecimal, {
-          duration: durationDecimal,
-          start: formatStringToTime(startTime),
-          end: formatStringToTime(endTime),
+        onChangeTime({
+          duration: formattedTime,
+          start: undefined,
+          end: undefined,
         });
       }
     }
-  }, [startTime, endTime, time, tab]);
+  }, [duration, tab]);
+
+  useEffect(() => {
+    if (tab === 1 && startTime && endTime) {
+      const durationDecimal: number = calculateDuration();
+      onChangeTime({
+        duration: durationDecimal,
+        start: formatStringToTime(startTime),
+        end: formatStringToTime(endTime),
+      });
+    }
+  }, [startTime, endTime, tab]);
 
   const handleTabChange = (event: React.SyntheticEvent, newValue: number) => {
     setTab(newValue);
   };
 
-  const handleTimeChange = (time: string) => {
-    setTime(time);
+  const handleDurationChange = (time: string) => {
+    setDuration(time);
   };
 
   const handleStartTimeChange = (time: string) => {
@@ -91,18 +87,20 @@ export const DurationTabs: React.FC<DurationTabsProps> = ({
   };
 
   const calculateDuration = (): number => {
-    const formattedStartTime = formatStringToTime(startTime);
-    const formattedEndTime = formatStringToTime(endTime);
+    const formattedStartTime: Date = formatStringToTime(startTime);
+    const formattedEndTime: Date = formatStringToTime(endTime);
 
     if (formattedEndTime < formattedStartTime) {
       formattedEndTime.setDate(formattedEndTime.getDate() + 1);
     }
 
-    const durationMs =
+    const durationMs: number =
       formattedEndTime.getTime() - formattedStartTime.getTime();
     const durationMinutes = Math.floor(durationMs / 60000);
 
-    return Number((durationMinutes / 60).toFixed(2));
+    const result = Number((durationMinutes / 60).toFixed(2));
+
+    return result ? result : 0;
   };
 
   return (
@@ -118,8 +116,8 @@ export const DurationTabs: React.FC<DurationTabsProps> = ({
             <div>
               <TextField
                 type="time"
-                value={time}
-                onChange={(e) => handleTimeChange(e.target.value)}
+                value={duration}
+                onChange={(e) => handleDurationChange(e.target.value)}
               />
             </div>
           </div>
@@ -139,7 +137,7 @@ export const DurationTabs: React.FC<DurationTabsProps> = ({
                 onChange={(e) => handleEndTimeChange(e.target.value)}
               />
             </div>
-            <span>Duration: {formatDecimalToTime(duration)}</span>
+            <span>Duration: {formatDecimalToTime(calculateDuration())}</span>
           </div>
         )}
       </div>

@@ -62,20 +62,9 @@ export const Formular: React.FC<TimesheetFormProps> = ({ value, onSave }) => {
     updateTimesheetField("date", formattedDate);
   };
 
-  const handleTimeChange = (time: number | undefined, timespan?: Timespan) => {
-    if (timespan) {
-      updateTimesheetField("timespan", timespan);
-    } else {
-      updateTimesheetField("timespan", {
-        ...timesheet.timespan,
-        duration: time,
-      });
-    }
+  const handleTimeChange = (timespan: Timespan) => {
+    updateTimesheetField("timespan", timespan);
   };
-
-  // const handleTimespanChange = (timespan: Timesheet) => {
-  //   updateTimesheetField("timespan", timespan ?? undefined);
-  // }
 
   return (
     <div className="w-[600px] p-4 flex">
@@ -113,11 +102,8 @@ export const Formular: React.FC<TimesheetFormProps> = ({ value, onSave }) => {
           </FormularSection>
           <FormularSection title="Duration">
             <DurationTabs
-              value={timesheet.timespan.duration}
               timespan={timesheet.timespan}
-              onChangeTime={(time, timespan) =>
-                handleTimeChange(time, timespan)
-              }
+              onChangeTime={handleTimeChange}
             />
           </FormularSection>
         </div>

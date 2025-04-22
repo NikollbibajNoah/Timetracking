@@ -77,6 +77,18 @@ export const formatDecimalToTime = (
   return `${pad(hours)}:${pad(minutes)}`;
 };
 
+export const convertTimeStringToDecimal = (timeString: string): number => {
+  const [hoursStr, minutesStr] = timeString.split(":");
+  const hours = parseInt(hoursStr, 10);
+  const minutes = parseInt(minutesStr, 10);
+
+  if (isNaN(hours) || isNaN(minutes)) return 0;
+
+  const decimal = +(hours + minutes / 60).toFixed(2);
+  return decimal;
+};
+
+
 const getHoursFromDate = (date: Date): string => {
   return date.getHours().toString();
 };

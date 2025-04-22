@@ -32,7 +32,7 @@
       "id": 3,
       "date": "2025-04-12T10:00:00.000Z",
       "timespan": {
-        "duration": 1744768980000,
+        "duration": 1.25,
         "start": null,
         "end": null
       },
@@ -51,7 +51,7 @@
       "id": 5,
       "date": "2025-04-10T08:30:00.000Z",
       "timespan": {
-        "duration": 1.5,
+        "duration": 3.11,
         "start": null,
         "end": null
       },
@@ -108,9 +108,9 @@
       "id": 8,
       "date": "2025-04-07T09:15:00.000Z",
       "timespan": {
-        "duration": 1.4,
+        "duration": 1.33,
         "start": "2025-04-22T10:52:00.000Z",
-        "end": "2025-04-22T12:16:00.000Z"
+        "end": "2025-04-22T12:12:00.000Z"
       },
       "project": {
         "id": 2,
@@ -146,7 +146,7 @@
       "id": 10,
       "date": "2025-04-05T16:30:00.000Z",
       "timespan": {
-        "duration": 2,
+        "duration": 1,
         "start": null,
         "end": null
       },
@@ -184,7 +184,7 @@
       "id": 12,
       "date": "2025-04-03T12:00:00.000Z",
       "timespan": {
-        "duration": 5,
+        "duration": 1,
         "start": null,
         "end": null
       },
@@ -240,7 +240,7 @@
     {
       "date": "2025-01-21T00:00:00.000Z",
       "timespan": {
-        "duration": 1744765560000,
+        "duration": 7.34,
         "start": null,
         "end": null
       },
@@ -254,7 +254,7 @@
     {
       "date": "2025-04-22T00:00:00.000Z",
       "timespan": {
-        "duration": 1745285580000,
+        "duration": 5.13,
         "start": "2025-04-22T08:39:00.000Z",
         "end": "2025-04-22T20:32:00.000Z"
       },
@@ -268,7 +268,7 @@
     {
       "date": "2025-04-22T00:00:00.000Z",
       "timespan": {
-        "duration": 1745298120000,
+        "duration": 9.11,
         "start": null,
         "end": null
       },
@@ -278,6 +278,20 @@
         "projectDescription": "An application to provide weather forecasts and updates."
       },
       "id": 18
+    },
+    {
+      "date": "2025-04-03T00:00:00.000Z",
+      "timespan": {
+        "duration": 4.07,
+        "start": "2025-04-22T10:25:00.000Z",
+        "end": "2025-04-22T14:29:00.000Z"
+      },
+      "project": {
+        "id": 2,
+        "projectName": "E-commerce Platform",
+        "projectDescription": "An online platform for buying and selling products."
+      },
+      "id": 19
     }
   ]
 }
