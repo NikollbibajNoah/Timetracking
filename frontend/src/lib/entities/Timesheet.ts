@@ -5,8 +5,7 @@ import { User } from "./User";
 export interface Timesheet {
     id: number | undefined;
     date: Date | undefined;
-    duration: number | undefined;
-    timespan: Timespan | undefined;
+    timespan: Timespan;
     project: Project | undefined;
     user: User | undefined;
 }

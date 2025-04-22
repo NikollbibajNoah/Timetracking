@@ -1,4 +1,5 @@
 export type Timespan = {
-    from: Date | undefined;
-    to: Date | undefined;
+    duration: number | undefined;
+    start: Date | undefined;
+    end: Date | undefined;
 }

@@ -44,8 +44,8 @@ export const DurationTabs: React.FC<DurationTabsProps> = ({
       setTime(formattedTime);
     }
     if (timespan) {
-      const formattedStartDate = formatStringToDate(timespan.from)?.getTime();
-      const formattedEndDate = formatStringToDate(timespan.to)?.getTime();
+      const formattedStartDate = formatStringToDate(timespan.start)?.getTime();
+      const formattedEndDate = formatStringToDate(timespan.end)?.getTime();
       setStartTime(formatTimeToString(formattedStartDate!));
       setEndTime(formatTimeToString(formattedEndDate!));
     } else {
@@ -66,8 +66,9 @@ export const DurationTabs: React.FC<DurationTabsProps> = ({
         const durationDecimal = calculateDuration();
         setDuration(durationDecimal);
         onChangeTime(durationDecimal, {
-          from: formatStringToTime(startTime),
-          to: formatStringToTime(endTime),
+          duration: durationDecimal,
+          start: formatStringToTime(startTime),
+          end: formatStringToTime(endTime),
         });
       }
     }

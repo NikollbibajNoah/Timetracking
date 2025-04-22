@@ -31,7 +31,11 @@
     {
       "id": 3,
       "date": "2025-04-12T10:00:00.000Z",
-      "duration": 1744768980000,
+      "timespan": {
+        "duration": 1744768980000,
+        "start": null,
+        "end": null
+      },
       "project": {
         "id": 2,
         "projectName": "E-commerce Platform",
@@ -46,7 +50,11 @@
     {
       "id": 5,
       "date": "2025-04-10T08:30:00.000Z",
-      "duration": 1.5,
+      "timespan": {
+        "duration": 1.5,
+        "start": null,
+        "end": null
+      },
       "project": {
         "id": 1,
         "projectName": "Time Tracking App",
@@ -61,7 +69,11 @@
     {
       "id": 6,
       "date": "2025-04-09T13:00:00.000Z",
-      "duration": 6,
+      "timespan": {
+        "duration": 6,
+        "start": null,
+        "end": null
+      },
       "project": {
         "id": 2,
         "projectName": "E-commerce Platform",
@@ -76,7 +88,11 @@
     {
       "id": 7,
       "date": "2025-04-08T15:45:00.000Z",
-      "duration": 2.25,
+      "timespan": {
+        "duration": 2.25,
+        "start": null,
+        "end": null
+      },
       "project": {
         "id": 1,
         "projectName": "Time Tracking App",
@@ -91,7 +107,11 @@
     {
       "id": 8,
       "date": "2025-04-07T09:15:00.000Z",
-      "duration": 1744782480000,
+      "timespan": {
+        "duration": 1.4,
+        "start": "2025-04-22T10:52:00.000Z",
+        "end": "2025-04-22T12:16:00.000Z"
+      },
       "project": {
         "id": 2,
         "projectName": "E-commerce Platform",
@@ -106,7 +126,11 @@
     {
       "id": 9,
       "date": "2025-04-06T11:00:00.000Z",
-      "duration": 4.5,
+      "timespan": {
+        "duration": 4.5,
+        "start": null,
+        "end": null
+      },
       "project": {
         "id": 1,
         "projectName": "Time Tracking App",
@@ -121,7 +145,11 @@
     {
       "id": 10,
       "date": "2025-04-05T16:30:00.000Z",
-      "duration": 2,
+      "timespan": {
+        "duration": 2,
+        "start": null,
+        "end": null
+      },
       "project": {
         "id": 2,
         "projectName": "E-commerce Platform",
@@ -136,7 +164,11 @@
     {
       "id": 11,
       "date": "2025-04-04T07:45:00.000Z",
-      "duration": 1.25,
+      "timespan": {
+        "duration": 1.25,
+        "start": null,
+        "end": null
+      },
       "project": {
         "id": 1,
         "projectName": "Time Tracking App",
@@ -151,7 +183,11 @@
     {
       "id": 12,
       "date": "2025-04-03T12:00:00.000Z",
-      "duration": 5,
+      "timespan": {
+        "duration": 5,
+        "start": null,
+        "end": null
+      },
       "project": {
         "id": 2,
         "projectName": "E-commerce Platform",
@@ -166,7 +202,11 @@
     {
       "id": 13,
       "date": "2025-04-02T10:30:00.000Z",
-      "duration": 3.5,
+      "timespan": {
+        "duration": 3.5,
+        "start": null,
+        "end": null
+      },
       "project": {
         "id": 1,
         "projectName": "Time Tracking App",
@@ -181,7 +221,11 @@
     {
       "id": 14,
       "date": "2025-04-01T14:15:00.000Z",
-      "duration": 4.25,
+      "timespan": {
+        "duration": 4.45,
+        "start": null,
+        "end": null
+      },
       "project": {
         "id": 2,
         "projectName": "E-commerce Platform",
@@ -195,7 +239,11 @@
     },
     {
       "date": "2025-01-21T00:00:00.000Z",
-      "duration": 1744765560000,
+      "timespan": {
+        "duration": 1744765560000,
+        "start": null,
+        "end": null
+      },
       "project": {
         "id": 3,
         "projectName": "Social Media Network",
@@ -204,18 +252,32 @@
       "id": 15
     },
     {
-      "date": "2025-04-03T00:00:00.000Z",
-      "duration": 20.1,
+      "date": "2025-04-22T00:00:00.000Z",
       "timespan": {
-        "from": "2025-04-20T15:03:00.000Z",
-        "to": "2025-04-20T11:11:00.000Z"
+        "duration": 1745285580000,
+        "start": "2025-04-22T08:39:00.000Z",
+        "end": "2025-04-22T20:32:00.000Z"
       },
       "project": {
-        "id": 3,
-        "projectName": "Social Media Network",
-        "projectDescription": "A social media platform to connect with friends and family."
+        "id": 1,
+        "projectName": "Time Tracking App",
+        "projectDescription": "A web application to track time spent on various tasks."
       },
-      "id": 16
+      "id": 17
+    },
+    {
+      "date": "2025-04-22T00:00:00.000Z",
+      "timespan": {
+        "duration": 1745298120000,
+        "start": null,
+        "end": null
+      },
+      "project": {
+        "id": 5,
+        "projectName": "Weather Forecast App",
+        "projectDescription": "An application to provide weather forecasts and updates."
+      },
+      "id": 18
     }
   ]
 }

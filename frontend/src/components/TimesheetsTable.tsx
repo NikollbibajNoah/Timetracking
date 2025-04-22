@@ -21,6 +21,8 @@ export interface TimesheetsTableProps {
 const tableConfig: DataTableHeaderConfig[] = [
   { label: "Datum", width: "14" },
   { label: "Dauer" },
+  { label: "Start", width: "14" },
+  { label: "Ende", width: "14" },
   { label: "Projekt" },
   { label: "Benutzer" },
   { label: "Aktionen", width: "5" },

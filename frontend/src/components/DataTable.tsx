@@ -75,9 +75,15 @@ export const DataTable: React.FC<DataTableProps> = ({
                     {formatDateToString(formatStringToDate(row.date!)!)}
                   </TableCell>
                   <TableCell>
-                    {Number.isInteger(row.duration)
-                      ? formatTimeToStringDuration(row.duration!)
-                      : formatDecimalToTime(row.duration!, true)}
+                    {Number.isInteger(row.timespan.duration)
+                      ? formatTimeToStringDuration(row.timespan.duration!)
+                      : formatDecimalToTime(row.timespan.duration!, true)}
+                  </TableCell>
+                  <TableCell>
+                      {row.timespan.start ? formatDateToString(formatStringToDate(row.timespan.start)!, true) : "-"}
+                  </TableCell>
+                  <TableCell>
+                      {row.timespan.end ? formatDateToString(formatStringToDate(row.timespan.end)!, true) : "-"}
                   </TableCell>
                   <TableCell>{row.project?.projectName}</TableCell>
                   <TableCell>{row.user?.name}</TableCell>

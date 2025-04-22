@@ -13,8 +13,11 @@ import { Footer } from "./components/layout/Footer";
 const initialTimesheet: Timesheet = {
   id: undefined,
   date: undefined,
-  duration: undefined,
-  timespan: undefined,
+  timespan: {
+    duration: undefined,
+    start: undefined,
+    end: undefined,
+  },
   user: undefined,
   project: undefined,
 };

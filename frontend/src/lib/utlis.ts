@@ -5,12 +5,20 @@
  * @param value - The Date object to format.
  * @returns A string representing the formatted date.
  */
-export const formatDateToString = (value: Date): string =>
-  value.toLocaleDateString("de-EU", {
+export const formatDateToString = (value: Date, timeOnly?: boolean): string => {
+  if (timeOnly) {
+    return value.toLocaleTimeString("de-EU", {
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+  }
+
+  return value.toLocaleDateString("de-EU", {
     day: "2-digit",
     month: "2-digit",
     year: "numeric",
   });
+};
 
 /**
  * Converts a string representation of a date into a `Date` object.

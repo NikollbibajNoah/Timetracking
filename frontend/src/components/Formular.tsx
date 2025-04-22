@@ -30,8 +30,13 @@ export const Formular: React.FC<TimesheetFormProps> = ({ value, onSave }) => {
   useEffect(() => {
     setTimesheet({
       ...value,
+      timespan: {
+        ...value.timespan,
+        duration: value.timespan?.duration
+          ? value.timespan.duration
+          : undefined,
+      },
       date: value.date ? new Date(value.date) : undefined,
-      duration: value.duration ? value.duration : undefined,
     });
   }, [value]);
 
@@ -58,10 +63,13 @@ export const Formular: React.FC<TimesheetFormProps> = ({ value, onSave }) => {
   };
 
   const handleTimeChange = (time: number | undefined, timespan?: Timespan) => {
-    updateTimesheetField("duration", time);
-
     if (timespan) {
       updateTimesheetField("timespan", timespan);
+    } else {
+      updateTimesheetField("timespan", {
+        ...timesheet.timespan,
+        duration: time,
+      });
     }
   };
 
@@ -105,9 +113,11 @@ export const Formular: React.FC<TimesheetFormProps> = ({ value, onSave }) => {
           </FormularSection>
           <FormularSection title="Duration">
             <DurationTabs
-              value={timesheet.duration}
+              value={timesheet.timespan.duration}
               timespan={timesheet.timespan}
-              onChangeTime={(time, timespan) => handleTimeChange(time, timespan)}
+              onChangeTime={(time, timespan) =>
+                handleTimeChange(time, timespan)
+              }
             />
           </FormularSection>
         </div>

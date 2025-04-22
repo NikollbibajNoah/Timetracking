@@ -15,7 +15,11 @@ export const useTimesheet = (initialTimesheet: Timesheet) => {
     setTimesheet({
       date: undefined,
       duration: undefined,
-      timespan: undefined,
+      timespan: {
+        duration: undefined,
+        start: undefined,
+        end: undefined,
+      },
       user: undefined,
       project: undefined,
       id: undefined,
