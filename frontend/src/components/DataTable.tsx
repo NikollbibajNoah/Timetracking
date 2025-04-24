@@ -71,10 +71,10 @@ export const DataTable: React.FC<DataTableProps> = ({
                   className={`${i % 2 === 0 ? "bg-gray-50" : ""}`}
                 >
                   <TableCell>
-                    {formatDateToString(formatStringToDate(row.date!)!)}
+                    {row.date ? formatDateToString(formatStringToDate(row.date)!) : "-"}
                   </TableCell>
                   <TableCell>
-                    {formatDecimalToTime(row.timespan.duration!, true)}
+                    {row.timespan.duration ? formatDecimalToTime(row.timespan.duration, true) : "-"}
                   </TableCell>
                   <TableCell>
                       {row.timespan.start ? formatDateToString(formatStringToDate(row.timespan.start)!, true) : "-"}
@@ -82,8 +82,8 @@ export const DataTable: React.FC<DataTableProps> = ({
                   <TableCell>
                       {row.timespan.end ? formatDateToString(formatStringToDate(row.timespan.end)!, true) : "-"}
                   </TableCell>
-                  <TableCell>{row.project?.projectName}</TableCell>
-                  <TableCell>{row.user?.name}</TableCell>
+                  <TableCell>{row.project ? row.project.projectName : "-"}</TableCell>
+                  <TableCell>{row.user ? row.user.name : "-"}</TableCell>
                   <TableCell className="w-20" align="right">
                     <IconButton
                       onClick={(e) => onRowClick && onRowClick(e, row)}

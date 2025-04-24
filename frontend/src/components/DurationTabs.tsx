@@ -7,15 +7,17 @@ import {
   formatStringToTime,
   formatTimeToString,
 } from "../lib/utlis";
-import { Timespan } from "@/lib/entities";
+import { Timesheet, Timespan } from "@/lib/entities";
 
 export interface DurationTabsProps {
   timespan: Timespan;
+  invalidFields: Map<keyof Timesheet, boolean>;
   onChangeTime: (timespan: Timespan) => void;
 }
 
 export const DurationTabs: React.FC<DurationTabsProps> = ({
   timespan,
+  invalidFields,
   onChangeTime,
 }) => {
   const [tab, setTab] = useState<number>(0);
@@ -118,6 +120,7 @@ export const DurationTabs: React.FC<DurationTabsProps> = ({
                 type="time"
                 value={duration}
                 onChange={(e) => handleDurationChange(e.target.value)}
+                error={invalidFields.get("timespan")}
               />
             </div>
           </div>
@@ -130,11 +133,13 @@ export const DurationTabs: React.FC<DurationTabsProps> = ({
                 type="time"
                 value={startTime}
                 onChange={(e) => handleStartTimeChange(e.target.value)}
+                error={invalidFields.get("timespan")}
               />
               <TextField
                 type="time"
                 value={endTime}
                 onChange={(e) => handleEndTimeChange(e.target.value)}
+                error={invalidFields.get("timespan")}
               />
             </div>
             <span>Duration: {formatDecimalToTime(calculateDuration())}</span>

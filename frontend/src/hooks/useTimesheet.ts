@@ -14,7 +14,6 @@ export const useTimesheet = (initialTimesheet: Timesheet) => {
   const clearTimesheet = () => {
     setTimesheet({
       date: undefined,
-      duration: undefined,
       timespan: {
         duration: undefined,
         start: undefined,
